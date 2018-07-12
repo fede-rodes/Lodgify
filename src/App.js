@@ -22,8 +22,14 @@ export class App extends Component {
 
   handleClickAdd = () => {
     const { todo, todos } = this.state;
-    todo &&
-    this.setState({ todos: [ ...todos, { text: todo, id: uniqueId() } ] });
+    if (!todo || todo.length === 0) {
+      alert('Please, enter some text');
+      return;
+    }
+    this.setState({
+      todo: '',
+      todos: [ ...todos, { text: todo, id: uniqueId() } ],
+    });
   };
 
   handleClickDelete = index => {
