@@ -7,7 +7,7 @@ export class App extends Component {
 
   state = {
     todo: '',
-    todos: [ { text: 'Add your first todo' } ]
+    todos: [ { text: 'Add your first todo', id: uniqueId() } ]
   }
 
   componentDidUpdate = (prevProps, prevState) => {
@@ -22,7 +22,8 @@ export class App extends Component {
 
   handleClickAdd = () => {
     const { todo, todos } = this.state;
-    todo && this.setState({ todos: [ ...todos, { text: todo } ] });
+    todo &&
+    this.setState({ todos: [ ...todos, { text: todo, id: uniqueId() } ] });
   };
 
   handleClickDelete = index => {
@@ -35,9 +36,6 @@ export class App extends Component {
   }
 
   render() {
-    this.state.todos.forEach((todo, index) => {
-      this.state.todos[index] = { ...todo, id: uniqueId() };
-    });
     const { todo, todos } = this.state;
     return (
       <div className="todo-list">
