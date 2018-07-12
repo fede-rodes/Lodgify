@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 export class Todo extends Component {
   render () {
@@ -11,3 +12,13 @@ export class Todo extends Component {
     );
   }
 }
+
+Todo.propTypes = {
+  text: PropTypes.string,
+  onClickDelete: PropTypes.func,
+};
+
+Todo.defaultProps = {
+  text: '',
+  onClickDelete: () => {},
+};
