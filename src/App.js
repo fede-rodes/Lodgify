@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { uniqueId } from 'lodash';
 
 import { Todo } from './Todo';
+import { AddTodo } from './AddTodo';
 
 export class App extends Component {
 
   state = {
-    todo: '',
     todos: [ { text: 'Add your first todo', id: uniqueId() } ]
   }
 
@@ -18,10 +18,8 @@ export class App extends Component {
     }
   }
 
-  handleChange = event => this.setState({ todo: event.target.value });
-
-  handleClickAdd = () => {
-    const { todo, todos } = this.state;
+  handleClickAdd = (todo) => {
+    const { todos } = this.state;
     todo &&
     this.setState({ todos: [ ...todos, { text: todo, id: uniqueId() } ] });
   };
@@ -53,15 +51,7 @@ export class App extends Component {
             : 'You\'re all done 🌴'
           }
         </div>
-        <div className="todo-input">
-          <input
-            onChange={this.handleChange}
-            placeholder="..."
-            type="text"
-            value={todo}
-          />
-          <button onClick={this.handleClickAdd}>Add</button>
-        </div>
+        <AddTodo onSubmit={this.handleClickAdd}/>
       </div>
     )
   }
