@@ -10,14 +10,6 @@ export class App extends Component {
     todos: [ { text: 'Add your first todo', id: uniqueId() } ]
   }
 
-  componentDidUpdate = (prevProps, prevState) => {
-    const { todos: prevTodos } = prevState;
-    const { todos } = this.state;
-    if ( prevTodos.length !== todos.length ) {
-      document.querySelector('#counter').innerText = todos.length;
-    }
-  }
-
   handleChange = event => this.setState({ todo: event.target.value });
 
   handleClickAdd = () => {
@@ -40,7 +32,7 @@ export class App extends Component {
     return (
       <div className="todo-list">
         <h1>todos</h1>
-        <p><span id="counter">1</span> remaining</p>
+        <p><span>{todos.length}</span> remaining</p>
         <div>
           {todos.length
             ? todos.map((todo, index) => (
