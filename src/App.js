@@ -26,7 +26,7 @@ export class App extends Component {
   };
 
   handleClickDelete = index => {
-    console.log(`Deleting todo number ${index}`);
+    console.log(`Deleting todo number ${index}`); // eslint-disable-line
     const { todos } = this.state;
     this.setState({ todos: [
       ...todos.slice(0, index),
@@ -44,14 +44,24 @@ export class App extends Component {
         <h1>todos</h1>
         <p><span id="counter">1</span> remaining</p>
         <div>
-          {
-            todos.length
-              ? todos.map((todo, index) => <Todo key={todo.id} onClickDelete={() => this.handleClickDelete(index)} text={todo.text} />)
-              : 'You\'re all done 🌴'
+          {todos.length
+            ? todos.map((todo, index) => (
+              <Todo
+                key={todo.id}
+                onClickDelete={() => this.handleClickDelete(index)}
+                text={todo.text}
+              />
+            ))
+            : 'You\'re all done 🌴'
           }
         </div>
         <div className="todo-input">
-          <input onChange={this.handleChange} placeholder="..." type="text" value={todo}/>
+          <input
+            onChange={this.handleChange}
+            placeholder="..."
+            type="text"
+            value={todo}
+          />
           <button onClick={this.handleClickAdd}>Add</button>
         </div>
       </div>
