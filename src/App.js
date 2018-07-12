@@ -20,7 +20,8 @@ export class App extends Component {
 
   handleChange = event => this.setState({ todo: event.target.value });
 
-  handleClickAdd = () => {
+  handleClickAdd = (evt) => {
+    evt.preventDefault();
     const { todo, todos } = this.state;
     todo &&
     this.setState({ todos: [ ...todos, { text: todo, id: uniqueId() } ] });
@@ -53,15 +54,20 @@ export class App extends Component {
             : 'You\'re all done 🌴'
           }
         </div>
-        <div className="todo-input">
+        <form
+          onSubmit={this.handleClickAdd}
+          className="todo-input"
+        >
           <input
             onChange={this.handleChange}
             placeholder="..."
             type="text"
             value={todo}
           />
-          <button onClick={this.handleClickAdd}>Add</button>
-        </div>
+          <button type="submit">
+            Add
+          </button>
+        </form>
       </div>
     )
   }
