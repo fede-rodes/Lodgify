@@ -1,5 +1,7 @@
 ## todo-list
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/fede-rodes/Lodgify.svg)](https://greenkeeper.io/)
+
 A simple todo list app written in React.
 
 ### Quick start
